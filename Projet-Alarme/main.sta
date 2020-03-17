@@ -1,0 +1,59 @@
+
+ROM used: 1642 (5%)
+          1642 (5%) including unused fragments
+
+          3 Average locations per line
+          10 Average locations per statement
+
+RAM used: 30 (2%) at main() level
+          36 (2%) worst case
+
+Stack used: 3 worst case (out of 31 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  238   169 100  main.c
+   27     0   0  main.h
+  354     0   0  F:\PICC\Devices\18F452.h
+----- -----
+  619   169 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     60   2   0   226  4.0  TIMER1_isr
+0    566  17   1  2811  5.4  EXT_isr
+0     74   2   2             @MUL88
+0     16   0   0             @const102
+0     32   1   3             @PSTRINGCN_9600_31766_31767
+0     16   0   0             @const105
+0     16   0   0    50  1.5  @const106
+0     14   0   0    50  1.5  alarm_ext_setup
+0    550  17   0  2229  6.8  MAIN
+0     22   1   0    50  1.5  @const110
+0     22   1   0  1522  6.3  @const111
+0     24   1   0             @const112
+0     24   1   0             @const113
+0     24   1   0             @const114
+0     24   1   0             @const115
+
+Program metrics:
+    Functions               7
+    Statements              169
+    Comments                107
+    Volume (V)              8973
+    Difficilty (D)          27.9
+    Effort to implement (E) 250095
+    Time to implement (T)   3 hours, 52 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   45
+    Maintainability (MI)    70
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000A0   154  0  
+000A2-07FFE  1484  31122  
+
+
+
