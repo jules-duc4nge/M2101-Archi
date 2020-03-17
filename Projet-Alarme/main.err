@@ -1,4 +1,4 @@
->>> Warning 216 "main.c" Line 239(0,1): Interrupts disabled during call to prevent re-entrancy:  (@PSTRINGCN_9600_31766_31767)
+>>> Warning 216 "main.c" Line 243(0,1): Interrupts disabled during call to prevent re-entrancy:  (@PSTRINGCN_9600_31766_31767)
 >>> Warning 202 "main.c" Line 39(10,19): Variable never used:   DELAY_OUT
 >>> Warning 202 "main.c" Line 39(29,37): Variable never used:   DELAY_IN
 >>> Warning 202 "main.c" Line 39(48,64): Variable never used:   LEGAL_ALARM_TIME

@@ -41,7 +41,26 @@ int8 const ARMAMENT_CODE=33, const DISARMAMENT_CODE=1664,
 //Variables
 signed int8 tenth=0, code=0, alarm_delay=-1, alarm_ext_delay=-1, door_delay=-1,
     alarm_state=0, alarm_ext_state=0;
+    
+//Fonctions et méthodes
+void alarm_ext_setup(){
+   alarm_ext_delay=10;//LEGAL_ALARM_TIME;
+   alarm_ext_state=1;
+   output_high(alarm);
+}
 
+void general_reset(){
+   output_low(window_1_led);//Fenêtres
+   output_low(window_2_led);
+   output_low(window_3_led);
+   output_low(window_4_led);
+   output_low(door_1_led);//Portes
+   output_low(door_2_led);
+   alarm_delay=-1;//Délais
+   alarm_ext_delay=-1;
+   door_delay=-1;
+}
+   
 #int_TIMER1
 void TIMER1_isr(void){
    set_timer1(3036); //Tout les dixièmes
@@ -126,13 +145,7 @@ void  EXT_isr(void){
    if(digi_row_4){
       printf("#");
       if(code==ARMAMENT_CODE){
-         //Reset
-         output_low(window_1_led);//Fenêtres
-         output_low(window_2_led);
-         output_low(window_3_led);
-         output_low(window_4_led);
-         output_low(door_1_led);//Portes
-         output_low(door_2_led);
+         general_reset();
          //Setup
          alarm_state=0;
          alarm_ext_state=0;
@@ -154,12 +167,6 @@ void  EXT_isr(void){
    output_high(digi_column_1);
    output_high(digi_column_2);
    output_high(digi_column_3);
-}
-
-void alarm_ext_setup(){
-   alarm_ext_delay=10;//LEGAL_ALARM_TIME;
-   alarm_ext_state=1;
-   output_high(alarm);
 }
 
 void main(){

@@ -29,8 +29,8 @@
 01B     door_delay
 01C     alarm_state
 01D     alarm_ext_state
-021     @MUL88.P1
-021     @PSTRINGCN_9600_31766_31767.P2
+021     @PSTRINGCN_9600_31766_31767.P1
+021     @MUL88.P2
 021     EXT_isr.@SCRATCH1
 022     @MUL88.P1
 022     @PSTRINGCN_9600_31766_31767.@SCRATCH1
@@ -44,30 +44,31 @@ FBE     CCP_1
 FBF     CCP_1_HIGH
 FE1-FE2 @READ_PACKED_MEMORY.P1
 FE1-FE2 @WRITE_PACKED_MEMORY.P2
-FE9-FEA @WRITE_PROGRAM_MEMORY.P1
-FE9-FEA @WRITE_PACKED_MEMORY.P2
-FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
 FE9-FEA @READ_PACKED_MEMORY.P4
 FF6-FF8 @READ_PROGRAM_MEMORY.P1
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
 
 ROM Allocation:
+0440  alarm_ext_setup
+0128  general_reset
 00A2  TIMER1_isr
-0148  EXT_isr
+016C  EXT_isr
 00DE  @MUL88
-037E  @const102
-0128  @PSTRINGCN_9600_31766_31767
-038E  @const105
-039E  @const106
-043A  alarm_ext_setup
-0448  MAIN
-03AE  @const110
-03C4  @const111
-03DA  @const112
-03F2  @const113
-040A  @const114
-0422  @const115
-0448  @cinit
+0384  @const104
+014C  @PSTRINGCN_9600_31766_31767
+0394  @const107
+03A4  @const108
+044E  MAIN
+03B4  @const111
+03CA  @const112
+03E0  @const113
+03F8  @const114
+0410  @const115
+0428  @const116
+044E  @cinit
 
 
 User Memory space: 
@@ -75,7 +76,7 @@ User Memory space:
 User Memory space: 
 
 Project Directory:
-    C:\Users\Jules\Documents\Alarme\
+    C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Alarme\
 
 Project Files:
     main.c
@@ -83,7 +84,7 @@ Project Files:
     F:\PICC\Devices\18F452.h
 
 Units:
-    C:\Users\Jules\Documents\Alarme\main (main)
+    C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Alarme\main (main)
 
 Compiler Settings:
     Processor:      PIC18F452
