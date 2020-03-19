@@ -41,6 +41,7 @@ int8 const ARMAMENT_CODE=33, const DISARMAMENT_CODE=1664,
 //Variables
 signed int8 tenth=0, code=0, alarm_delay=-1, alarm_ext_delay=-1, door_delay=-1,
     alarm_state=0, alarm_ext_state=0;
+char general_check=(window_1 && window_2 && window_3 && window_4 && door_1 && door_2);
     
 //Fonctions et méthodes
 void alarm_ext_setup(){
@@ -146,12 +147,17 @@ void  EXT_isr(void){
       printf("#");
       if(code==ARMAMENT_CODE){
          general_reset();
-         //Setup
-         alarm_state=0;
-         alarm_ext_state=0;
-         printf("%c%c Alarme ON",254,1);
-         alarm_delay=5;//DELAY_OUT;
-         output_high(buzzer);
+         //Check-up
+         if(general_check){
+            //Setup
+            alarm_state=0;
+            alarm_ext_state=0;
+            printf("%c%c Alarme ON",254,1);
+            alarm_delay=5;//DELAY_OUT;
+            output_high(buzzer);
+         }else{
+            printf("%c%c Maison ouverte\nAnnulation",254,1);
+         }
       }else if(code==DISARMAMENT_CODE){
          printf("%c%c Alarme OFF",254,1);
          alarm_state=-1;

@@ -1,15 +1,15 @@
-CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
+CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:49
 
                Filename: C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Alarme\main.lst
 
-               ROM used: 1648 bytes (5%)
-                         Largest free fragment is 31116
-               RAM used: 30 (2%) at main() level
-                         36 (2%) worst case
+               ROM used: 1760 bytes (5%)
+                         Largest free fragment is 31004
+               RAM used: 31 (2%) at main() level
+                         37 (2%) worst case
                Stack:    3 worst case (1 in main + 2 for interrupts)
 
 *
-0000:  GOTO   044E
+0000:  GOTO   0492
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -128,20 +128,21 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 .................... //Variables 
 .................... signed int8 tenth=0, code=0, alarm_delay=-1, alarm_ext_delay=-1, door_delay=-1, 
 ....................     alarm_state=0, alarm_ext_state=0; 
+.................... char general_check=(window_1 && window_2 && window_3 && window_4 && door_1 && door_2); 
 ....................      
 .................... //Fonctions et méthodes 
 .................... void alarm_ext_setup(){ 
 ....................    alarm_ext_delay=10;//LEGAL_ALARM_TIME; 
-0440:  MOVLW  0A
-0442:  MOVWF  1A
+0484:  MOVLW  0A
+0486:  MOVWF  1A
 ....................    alarm_ext_state=1; 
-0444:  MOVLW  01
-0446:  MOVWF  1D
+0488:  MOVLW  01
+048A:  MOVWF  1D
 ....................    output_high(alarm); 
-0448:  BCF    F93.7
-044A:  BSF    F8A.7
+048C:  BCF    F93.7
+048E:  BSF    F8A.7
 .................... } 
-044C:  RETLW  00
+0490:  RETLW  00
 ....................  
 .................... void general_reset(){ 
 ....................    output_low(window_1_led);//Fenêtres 
@@ -246,8 +247,8 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 0184:  MOVWF  FAD
 ....................       code=10*code+1; 
 0186:  MOVLW  0A
-0188:  MOVWF  21
-018A:  MOVFF  18,22
+0188:  MOVWF  22
+018A:  MOVFF  18,23
 018E:  RCALL  00DE
 0190:  MOVLW  01
 0192:  ADDWF  01,W
@@ -264,8 +265,8 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 01A2:  MOVWF  FAD
 ....................       code=10*code+4; 
 01A4:  MOVLW  0A
-01A6:  MOVWF  21
-01A8:  MOVFF  18,22
+01A6:  MOVWF  22
+01A8:  MOVFF  18,23
 01AC:  RCALL  00DE
 01AE:  MOVLW  04
 01B0:  ADDWF  01,W
@@ -282,8 +283,8 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 01C0:  MOVWF  FAD
 ....................       code=10*code+7; 
 01C2:  MOVLW  0A
-01C4:  MOVWF  21
-01C6:  MOVFF  18,22
+01C4:  MOVWF  22
+01C6:  MOVFF  18,23
 01CA:  RCALL  00DE
 01CC:  MOVLW  07
 01CE:  ADDWF  01,W
@@ -332,8 +333,8 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 020A:  MOVWF  FAD
 ....................       code=10*code+2; 
 020C:  MOVLW  0A
-020E:  MOVWF  21
-0210:  MOVFF  18,22
+020E:  MOVWF  22
+0210:  MOVFF  18,23
 0214:  RCALL  00DE
 0216:  MOVLW  02
 0218:  ADDWF  01,W
@@ -350,8 +351,8 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 0228:  MOVWF  FAD
 ....................       code=10*code+5; 
 022A:  MOVLW  0A
-022C:  MOVWF  21
-022E:  MOVFF  18,22
+022C:  MOVWF  22
+022E:  MOVFF  18,23
 0232:  RCALL  00DE
 0234:  MOVLW  05
 0236:  ADDWF  01,W
@@ -368,8 +369,8 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 0246:  MOVWF  FAD
 ....................       code=10*code+8; 
 0248:  MOVLW  0A
-024A:  MOVWF  21
-024C:  MOVFF  18,22
+024A:  MOVWF  22
+024C:  MOVFF  18,23
 0250:  RCALL  00DE
 0252:  MOVLW  08
 0254:  ADDWF  01,W
@@ -386,8 +387,8 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 0264:  MOVWF  FAD
 ....................       code=10*code+0; 
 0266:  MOVLW  0A
-0268:  MOVWF  21
-026A:  MOVFF  18,22
+0268:  MOVWF  22
+026A:  MOVFF  18,23
 026E:  RCALL  00DE
 0270:  MOVFF  01,18
 ....................    } 
@@ -414,8 +415,8 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 028C:  MOVWF  FAD
 ....................       code=10*code+3; 
 028E:  MOVLW  0A
-0290:  MOVWF  21
-0292:  MOVFF  18,22
+0290:  MOVWF  22
+0292:  MOVFF  18,23
 0296:  RCALL  00DE
 0298:  MOVLW  03
 029A:  ADDWF  01,W
@@ -432,8 +433,8 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 02AA:  MOVWF  FAD
 ....................       code=10*code+6; 
 02AC:  MOVLW  0A
-02AE:  MOVWF  21
-02B0:  MOVFF  18,22
+02AE:  MOVWF  22
+02B0:  MOVFF  18,23
 02B4:  RCALL  00DE
 02B6:  MOVLW  06
 02B8:  ADDWF  01,W
@@ -450,8 +451,8 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 02C8:  MOVWF  FAD
 ....................       code=10*code+9; 
 02CA:  MOVLW  0A
-02CC:  MOVWF  21
-02CE:  MOVFF  18,22
+02CC:  MOVWF  22
+02CE:  MOVFF  18,23
 02D2:  RCALL  00DE
 02D4:  MOVLW  09
 02D6:  ADDWF  01,W
@@ -460,7 +461,7 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 ....................    if(digi_row_4){ 
 02DA:  BSF    F95.6
 02DC:  BTFSS  F83.6
-02DE:  BRA    0372
+02DE:  BRA    0396
 ....................       printf("#"); 
 02E0:  MOVLW  23
 02E2:  BTFSS  F9E.4
@@ -469,451 +470,496 @@ CCS PCH C Compiler, Version 4.104, 5967               17-mars-20 13:34
 ....................       if(code==ARMAMENT_CODE){ 
 02E8:  MOVF   18,W
 02EA:  SUBLW  21
-02EC:  BNZ   031C
+02EC:  BNZ   0340
 ....................          general_reset(); 
 02EE:  BRA    0128
-....................          //Setup 
-....................          alarm_state=0; 
-02F0:  CLRF   1C
-....................          alarm_ext_state=0; 
-02F2:  CLRF   1D
-....................          printf("%c%c Alarme ON",254,1); 
-02F4:  MOVLW  FE
-02F6:  BTFSS  F9E.4
-02F8:  BRA    02F6
-02FA:  MOVWF  FAD
-02FC:  MOVLW  01
-02FE:  BTFSS  F9E.4
-0300:  BRA    02FE
-0302:  MOVWF  FAD
-0304:  MOVLW  88
-0306:  MOVWF  FF6
-0308:  MOVLW  03
-030A:  MOVWF  FF7
-030C:  MOVLW  0A
-030E:  MOVWF  21
-0310:  RCALL  014C
-....................          alarm_delay=5;//DELAY_OUT; 
-0312:  MOVLW  05
-0314:  MOVWF  19
-....................          output_high(buzzer); 
-0316:  BCF    F92.0
-0318:  BSF    F89.0
+....................          //Check-up 
+....................          if(general_check){ 
+02F0:  MOVF   1E,F
+02F2:  BZ    0320
+....................             //Setup 
+....................             alarm_state=0; 
+02F4:  CLRF   1C
+....................             alarm_ext_state=0; 
+02F6:  CLRF   1D
+....................             printf("%c%c Alarme ON",254,1); 
+02F8:  MOVLW  FE
+02FA:  BTFSS  F9E.4
+02FC:  BRA    02FA
+02FE:  MOVWF  FAD
+0300:  MOVLW  01
+0302:  BTFSS  F9E.4
+0304:  BRA    0302
+0306:  MOVWF  FAD
+0308:  MOVLW  AC
+030A:  MOVWF  FF6
+030C:  MOVLW  03
+030E:  MOVWF  FF7
+0310:  MOVLW  0A
+0312:  MOVWF  22
+0314:  RCALL  014C
+....................             alarm_delay=5;//DELAY_OUT; 
+0316:  MOVLW  05
+0318:  MOVWF  19
+....................             output_high(buzzer); 
+031A:  BCF    F92.0
+031C:  BSF    F89.0
+....................          }else{ 
+031E:  BRA    033E
+....................             printf("%c%c Maison ouverte\nAnnulation",254,1); 
+0320:  MOVLW  FE
+0322:  BTFSS  F9E.4
+0324:  BRA    0322
+0326:  MOVWF  FAD
+0328:  MOVLW  01
+032A:  BTFSS  F9E.4
+032C:  BRA    032A
+032E:  MOVWF  FAD
+0330:  MOVLW  BC
+0332:  MOVWF  FF6
+0334:  MOVLW  03
+0336:  MOVWF  FF7
+0338:  MOVLW  1A
+033A:  MOVWF  22
+033C:  RCALL  014C
+....................          } 
 ....................       }else if(code==DISARMAMENT_CODE){ 
-031A:  BRA    0370
-031C:  MOVF   18,W
-031E:  SUBLW  80
-0320:  BNZ   0352
+033E:  BRA    0394
+0340:  MOVF   18,W
+0342:  SUBLW  80
+0344:  BNZ   0376
 ....................          printf("%c%c Alarme OFF",254,1); 
-0322:  MOVLW  FE
-0324:  BTFSS  F9E.4
-0326:  BRA    0324
-0328:  MOVWF  FAD
-032A:  MOVLW  01
-032C:  BTFSS  F9E.4
-032E:  BRA    032C
-0330:  MOVWF  FAD
-0332:  MOVLW  98
-0334:  MOVWF  FF6
-0336:  MOVLW  03
-0338:  MOVWF  FF7
-033A:  MOVLW  0B
-033C:  MOVWF  21
-033E:  RCALL  014C
+0346:  MOVLW  FE
+0348:  BTFSS  F9E.4
+034A:  BRA    0348
+034C:  MOVWF  FAD
+034E:  MOVLW  01
+0350:  BTFSS  F9E.4
+0352:  BRA    0350
+0354:  MOVWF  FAD
+0356:  MOVLW  DC
+0358:  MOVWF  FF6
+035A:  MOVLW  03
+035C:  MOVWF  FF7
+035E:  MOVLW  0B
+0360:  MOVWF  22
+0362:  RCALL  014C
 ....................          alarm_state=-1; 
-0340:  MOVLW  FF
-0342:  MOVWF  1C
+0364:  MOVLW  FF
+0366:  MOVWF  1C
 ....................          output_low(buzzer); 
-0344:  BCF    F92.0
-0346:  BCF    F89.0
+0368:  BCF    F92.0
+036A:  BCF    F89.0
 ....................          output_low(alarm); 
-0348:  BCF    F93.7
-034A:  BCF    F8A.7
+036C:  BCF    F93.7
+036E:  BCF    F8A.7
 ....................          output_low(alarm_led); 
-034C:  BCF    F94.0
-034E:  BCF    F8B.0
+0370:  BCF    F94.0
+0372:  BCF    F8B.0
 ....................       }else{ 
-0350:  BRA    0370
+0374:  BRA    0394
 ....................          printf("%c%c Code faux",254,1); 
-0352:  MOVLW  FE
-0354:  BTFSS  F9E.4
-0356:  BRA    0354
-0358:  MOVWF  FAD
-035A:  MOVLW  01
-035C:  BTFSS  F9E.4
-035E:  BRA    035C
-0360:  MOVWF  FAD
-0362:  MOVLW  A8
-0364:  MOVWF  FF6
-0366:  MOVLW  03
-0368:  MOVWF  FF7
-036A:  MOVLW  0A
-036C:  MOVWF  21
-036E:  RCALL  014C
+0376:  MOVLW  FE
+0378:  BTFSS  F9E.4
+037A:  BRA    0378
+037C:  MOVWF  FAD
+037E:  MOVLW  01
+0380:  BTFSS  F9E.4
+0382:  BRA    0380
+0384:  MOVWF  FAD
+0386:  MOVLW  EC
+0388:  MOVWF  FF6
+038A:  MOVLW  03
+038C:  MOVWF  FF7
+038E:  MOVLW  0A
+0390:  MOVWF  22
+0392:  RCALL  014C
 ....................       } 
 ....................       code=0;//Reset du code 
-0370:  CLRF   18
+0394:  CLRF   18
 ....................    } 
 ....................    //Reset du digicode 
 ....................    output_high(digi_column_1); 
-0372:  BCF    F95.0
-0374:  BSF    F8C.0
+0396:  BCF    F95.0
+0398:  BSF    F8C.0
 ....................    output_high(digi_column_2); 
-0376:  BCF    F95.1
-0378:  BSF    F8C.1
+039A:  BCF    F95.1
+039C:  BSF    F8C.1
 ....................    output_high(digi_column_3); 
-037A:  BCF    F95.2
-037C:  BSF    F8C.2
+039E:  BCF    F95.2
+03A0:  BSF    F8C.2
 .................... } 
 ....................  
-037E:  BCF    FF2.1
-0380:  GOTO   0060
+03A2:  BCF    FF2.1
+03A4:  GOTO   0060
 .................... void main(){ 
 *
-044E:  CLRF   FF8
-0450:  BCF    FD0.7
-0452:  BSF    07.7
-0454:  CLRF   FEA
-0456:  CLRF   FE9
-0458:  MOVLW  81
-045A:  MOVWF  FAF
-045C:  MOVLW  A6
-045E:  MOVWF  FAC
-0460:  MOVLW  90
-0462:  MOVWF  FAB
-0464:  CLRF   17
-0466:  CLRF   18
-0468:  MOVLW  FF
-046A:  MOVWF  19
-046C:  MOVWF  1A
-046E:  MOVWF  1B
-0470:  CLRF   1C
-0472:  CLRF   1D
-0474:  BSF    FC1.0
-0476:  BSF    FC1.1
-0478:  BSF    FC1.2
-047A:  BCF    FC1.3
+0492:  CLRF   FF8
+0494:  BCF    FD0.7
+0496:  BSF    07.7
+0498:  CLRF   FEA
+049A:  CLRF   FE9
+049C:  MOVLW  81
+049E:  MOVWF  FAF
+04A0:  MOVLW  A6
+04A2:  MOVWF  FAC
+04A4:  MOVLW  90
+04A6:  MOVWF  FAB
+04A8:  CLRF   17
+04AA:  CLRF   18
+04AC:  MOVLW  FF
+04AE:  MOVWF  19
+04B0:  MOVWF  1A
+04B2:  MOVWF  1B
+04B4:  CLRF   1C
+04B6:  CLRF   1D
+04B8:  BSF    F93.1
+04BA:  BTFSS  F81.1
+04BC:  BRA    04DC
+04BE:  BSF    F93.2
+04C0:  BTFSS  F81.2
+04C2:  BRA    04DC
+04C4:  BSF    F93.3
+04C6:  BTFSS  F81.3
+04C8:  BRA    04DC
+04CA:  BSF    F93.4
+04CC:  BTFSS  F81.4
+04CE:  BRA    04DC
+04D0:  BSF    F93.5
+04D2:  BTFSS  F81.5
+04D4:  BRA    04DC
+04D6:  BSF    F93.6
+04D8:  BTFSC  F81.6
+04DA:  BRA    04E0
+04DC:  MOVLW  00
+04DE:  BRA    04E2
+04E0:  MOVLW  01
+04E2:  MOVWF  1E
+04E4:  BSF    FC1.0
+04E6:  BSF    FC1.1
+04E8:  BSF    FC1.2
+04EA:  BCF    FC1.3
 ....................    setup_adc_ports(NO_ANALOGS); 
-047C:  BSF    FC1.0
-047E:  BSF    FC1.1
-0480:  BSF    FC1.2
-0482:  BCF    FC1.3
+04EC:  BSF    FC1.0
+04EE:  BSF    FC1.1
+04F0:  BSF    FC1.2
+04F2:  BCF    FC1.3
 ....................    setup_adc(ADC_CLOCK_DIV_2); 
-0484:  BCF    FC1.6
-0486:  BCF    FC2.6
-0488:  BCF    FC2.7
-048A:  BCF    FC1.7
-048C:  BSF    FC2.0
+04F4:  BCF    FC1.6
+04F6:  BCF    FC2.6
+04F8:  BCF    FC2.7
+04FA:  BCF    FC1.7
+04FC:  BSF    FC2.0
 ....................    setup_psp(PSP_DISABLED); 
-048E:  BCF    F96.4
+04FE:  BCF    F96.4
 ....................    setup_spi(SPI_SS_DISABLED); 
-0490:  BCF    FC6.5
-0492:  BCF    F94.5
-0494:  BSF    F94.4
-0496:  BCF    F94.3
-0498:  MOVLW  01
-049A:  MOVWF  FC6
-049C:  MOVLW  00
-049E:  MOVWF  FC7
+0500:  BCF    FC6.5
+0502:  BCF    F94.5
+0504:  BSF    F94.4
+0506:  BCF    F94.3
+0508:  MOVLW  01
+050A:  MOVWF  FC6
+050C:  MOVLW  00
+050E:  MOVWF  FC7
 ....................    setup_wdt(WDT_OFF); 
-04A0:  BCF    FD1.0
+0510:  BCF    FD1.0
 ....................    setup_timer_0(RTCC_INTERNAL); 
-04A2:  MOVLW  80
-04A4:  MOVWF  FD5
+0512:  MOVLW  80
+0514:  MOVWF  FD5
 ....................    setup_timer_1(T1_INTERNAL|T1_DIV_BY_8); 
-04A6:  MOVLW  B5
-04A8:  MOVWF  FCD
+0516:  MOVLW  B5
+0518:  MOVWF  FCD
 ....................    setup_timer_2(T2_DISABLED,0,1); 
-04AA:  MOVLW  00
-04AC:  MOVWF  FCA
-04AE:  MOVLW  00
-04B0:  MOVWF  FCB
+051A:  MOVLW  00
+051C:  MOVWF  FCA
+051E:  MOVLW  00
+0520:  MOVWF  FCB
 ....................    enable_interrupts(INT_TIMER1); 
-04B2:  BSF    F9D.0
+0522:  BSF    F9D.0
 ....................    enable_interrupts(INT_EXT); 
-04B4:  BSF    FF2.4
+0524:  BSF    FF2.4
 ....................    enable_interrupts(GLOBAL); 
-04B6:  MOVLW  C0
-04B8:  IORWF  FF2,F
+0526:  MOVLW  C0
+0528:  IORWF  FF2,F
 ....................    //Setup_Oscillator parameter not selected from Intr Oscillator Config tab 
 ....................     
 ....................    //Setup du digicode 
 ....................    output_high(digi_column_1); 
-04BA:  BCF    F95.0
-04BC:  BSF    F8C.0
+052A:  BCF    F95.0
+052C:  BSF    F8C.0
 ....................    output_high(digi_column_2); 
-04BE:  BCF    F95.1
-04C0:  BSF    F8C.1
+052E:  BCF    F95.1
+0530:  BSF    F8C.1
 ....................    output_high(digi_column_3); 
-04C2:  BCF    F95.2
-04C4:  BSF    F8C.2
+0532:  BCF    F95.2
+0534:  BSF    F8C.2
 ....................     
 ....................    while(true){ 
 ....................       if(alarm_delay==0 && alarm_state==0){ 
-04C6:  MOVF   19,F
-04C8:  BNZ   04DA
-04CA:  MOVF   1C,F
-04CC:  BNZ   04DA
+0536:  MOVF   19,F
+0538:  BNZ   054A
+053A:  MOVF   1C,F
+053C:  BNZ   054A
 ....................          alarm_state=1; 
-04CE:  MOVLW  01
-04D0:  MOVWF  1C
+053E:  MOVLW  01
+0540:  MOVWF  1C
 ....................          output_low(buzzer); 
-04D2:  BCF    F92.0
-04D4:  BCF    F89.0
+0542:  BCF    F92.0
+0544:  BCF    F89.0
 ....................          output_high(alarm_led); 
-04D6:  BCF    F94.0
-04D8:  BSF    F8B.0
+0546:  BCF    F94.0
+0548:  BSF    F8B.0
 ....................       } 
 ....................        
 ....................       if(alarm_ext_state==1 && alarm_ext_delay==0){ 
-04DA:  DECFSZ 1D,W
-04DC:  BRA    04EA
-04DE:  MOVF   1A,F
-04E0:  BNZ   04EA
+054A:  DECFSZ 1D,W
+054C:  BRA    055A
+054E:  MOVF   1A,F
+0550:  BNZ   055A
 ....................             alarm_ext_state=-1; 
-04E2:  MOVLW  FF
-04E4:  MOVWF  1D
+0552:  MOVLW  FF
+0554:  MOVWF  1D
 ....................             output_low(alarm); 
-04E6:  BCF    F93.7
-04E8:  BCF    F8A.7
+0556:  BCF    F93.7
+0558:  BCF    F8A.7
 ....................       } 
 ....................       if(door_delay==0 && alarm_state==1){ 
-04EA:  MOVF   1B,F
-04EC:  BNZ   0562
-04EE:  DECFSZ 1C,W
-04F0:  BRA    0562
+055A:  MOVF   1B,F
+055C:  BNZ   05D2
+055E:  DECFSZ 1C,W
+0560:  BRA    05D2
 ....................             if(alarm_ext_state==0) 
-04F2:  MOVF   1D,F
-04F4:  BNZ   04F8
+0562:  MOVF   1D,F
+0564:  BNZ   0568
 ....................                alarm_ext_setup(); 
-04F6:  RCALL  0440
+0566:  RCALL  0484
 ....................             if(!door_1){ 
-04F8:  BSF    F93.5
-04FA:  BTFSC  F81.5
-04FC:  BRA    052E
+0568:  BSF    F93.5
+056A:  BTFSC  F81.5
+056C:  BRA    059E
 ....................                printf("%c%c Alerte, porte 1",254,1); 
-04FE:  MOVLW  FE
-0500:  BTFSS  F9E.4
-0502:  BRA    0500
-0504:  MOVWF  FAD
-0506:  MOVLW  01
-0508:  BTFSS  F9E.4
-050A:  BRA    0508
-050C:  MOVWF  FAD
-050E:  MOVLW  B8
-0510:  MOVWF  FF6
-0512:  MOVLW  03
-0514:  MOVWF  FF7
-0516:  CLRF   16
-0518:  BTFSC  FF2.7
-051A:  BSF    16.7
-051C:  BCF    FF2.7
-051E:  MOVLW  10
-0520:  MOVWF  21
-0522:  RCALL  014C
-0524:  BTFSC  16.7
-0526:  BSF    FF2.7
+056E:  MOVLW  FE
+0570:  BTFSS  F9E.4
+0572:  BRA    0570
+0574:  MOVWF  FAD
+0576:  MOVLW  01
+0578:  BTFSS  F9E.4
+057A:  BRA    0578
+057C:  MOVWF  FAD
+057E:  MOVLW  FC
+0580:  MOVWF  FF6
+0582:  MOVLW  03
+0584:  MOVWF  FF7
+0586:  CLRF   16
+0588:  BTFSC  FF2.7
+058A:  BSF    16.7
+058C:  BCF    FF2.7
+058E:  MOVLW  10
+0590:  MOVWF  22
+0592:  RCALL  014C
+0594:  BTFSC  16.7
+0596:  BSF    FF2.7
 ....................                output_high(door_1_led); 
-0528:  BCF    F96.0
-052A:  BSF    F8D.0
+0598:  BCF    F96.0
+059A:  BSF    F8D.0
 ....................             } else if(!door_2){ 
-052C:  BRA    0562
-052E:  BSF    F93.6
-0530:  BTFSC  F81.6
-0532:  BRA    0562
+059C:  BRA    05D2
+059E:  BSF    F93.6
+05A0:  BTFSC  F81.6
+05A2:  BRA    05D2
 ....................                printf("%c%c Alerte, porte 2",254,1); 
-0534:  MOVLW  FE
-0536:  BTFSS  F9E.4
-0538:  BRA    0536
-053A:  MOVWF  FAD
-053C:  MOVLW  01
-053E:  BTFSS  F9E.4
-0540:  BRA    053E
-0542:  MOVWF  FAD
-0544:  MOVLW  CE
-0546:  MOVWF  FF6
-0548:  MOVLW  03
-054A:  MOVWF  FF7
-054C:  CLRF   16
-054E:  BTFSC  FF2.7
-0550:  BSF    16.7
-0552:  BCF    FF2.7
-0554:  MOVLW  10
-0556:  MOVWF  21
-0558:  RCALL  014C
-055A:  BTFSC  16.7
-055C:  BSF    FF2.7
+05A4:  MOVLW  FE
+05A6:  BTFSS  F9E.4
+05A8:  BRA    05A6
+05AA:  MOVWF  FAD
+05AC:  MOVLW  01
+05AE:  BTFSS  F9E.4
+05B0:  BRA    05AE
+05B2:  MOVWF  FAD
+05B4:  MOVLW  12
+05B6:  MOVWF  FF6
+05B8:  MOVLW  04
+05BA:  MOVWF  FF7
+05BC:  CLRF   16
+05BE:  BTFSC  FF2.7
+05C0:  BSF    16.7
+05C2:  BCF    FF2.7
+05C4:  MOVLW  10
+05C6:  MOVWF  22
+05C8:  RCALL  014C
+05CA:  BTFSC  16.7
+05CC:  BSF    FF2.7
 ....................                output_high(door_2_led); 
-055E:  BCF    F96.1
-0560:  BSF    F8D.1
+05CE:  BCF    F96.1
+05D0:  BSF    F8D.1
 ....................             } 
 ....................       } 
 ....................        
 ....................       if(alarm_state == 1){ 
-0562:  DECFSZ 1C,W
-0564:  BRA    0670
+05D2:  DECFSZ 1C,W
+05D4:  BRA    06E0
 ....................          if(!window_1){ 
-0566:  BSF    F93.1
-0568:  BTFSC  F81.1
-056A:  BRA    05A2
+05D6:  BSF    F93.1
+05D8:  BTFSC  F81.1
+05DA:  BRA    0612
 ....................             printf("%c%c Alerte, fenêtre 1",254,1); 
-056C:  MOVLW  FE
-056E:  BTFSS  F9E.4
-0570:  BRA    056E
-0572:  MOVWF  FAD
-0574:  MOVLW  01
-0576:  BTFSS  F9E.4
-0578:  BRA    0576
-057A:  MOVWF  FAD
-057C:  MOVLW  E4
-057E:  MOVWF  FF6
-0580:  MOVLW  03
-0582:  MOVWF  FF7
-0584:  CLRF   16
-0586:  BTFSC  FF2.7
-0588:  BSF    16.7
-058A:  BCF    FF2.7
-058C:  MOVLW  12
-058E:  MOVWF  21
-0590:  RCALL  014C
-0592:  BTFSC  16.7
-0594:  BSF    FF2.7
-....................             output_high(window_1_led); 
-0596:  BCF    F94.1
-0598:  BSF    F8B.1
-....................             if(alarm_ext_state==0) 
-059A:  MOVF   1D,F
-059C:  BNZ   05A0
-....................                alarm_ext_setup(); 
-059E:  RCALL  0440
-....................          }else if(!window_2){ 
-05A0:  BRA    0670
-05A2:  BSF    F93.2
-05A4:  BTFSC  F81.2
-05A6:  BRA    05DE
-....................             printf("%c%c Alerte, fenêtre 2",254,1); 
-05A8:  MOVLW  FE
-05AA:  BTFSS  F9E.4
-05AC:  BRA    05AA
-05AE:  MOVWF  FAD
-05B0:  MOVLW  01
-05B2:  BTFSS  F9E.4
-05B4:  BRA    05B2
-05B6:  MOVWF  FAD
-05B8:  MOVLW  FC
-05BA:  MOVWF  FF6
-05BC:  MOVLW  03
-05BE:  MOVWF  FF7
-05C0:  CLRF   16
-05C2:  BTFSC  FF2.7
-05C4:  BSF    16.7
-05C6:  BCF    FF2.7
-05C8:  MOVLW  12
-05CA:  MOVWF  21
-05CC:  RCALL  014C
-05CE:  BTFSC  16.7
-05D0:  BSF    FF2.7
-....................             output_high(window_2_led); 
-05D2:  BCF    F94.2
-05D4:  BSF    F8B.2
-....................             if(alarm_ext_state==0) 
-05D6:  MOVF   1D,F
-05D8:  BNZ   05DC
-....................                alarm_ext_setup(); 
-05DA:  RCALL  0440
-....................          }else if(!window_3){ 
-05DC:  BRA    0670
-05DE:  BSF    F93.3
-05E0:  BTFSC  F81.3
-05E2:  BRA    061A
-....................             printf("%c%c Alerte, fenêtre 3",254,1); 
-05E4:  MOVLW  FE
+05DC:  MOVLW  FE
+05DE:  BTFSS  F9E.4
+05E0:  BRA    05DE
+05E2:  MOVWF  FAD
+05E4:  MOVLW  01
 05E6:  BTFSS  F9E.4
 05E8:  BRA    05E6
 05EA:  MOVWF  FAD
-05EC:  MOVLW  01
-05EE:  BTFSS  F9E.4
-05F0:  BRA    05EE
-05F2:  MOVWF  FAD
-05F4:  MOVLW  14
-05F6:  MOVWF  FF6
-05F8:  MOVLW  04
-05FA:  MOVWF  FF7
-05FC:  CLRF   16
-05FE:  BTFSC  FF2.7
-0600:  BSF    16.7
-0602:  BCF    FF2.7
-0604:  MOVLW  12
-0606:  MOVWF  21
-0608:  RCALL  014C
-060A:  BTFSC  16.7
-060C:  BSF    FF2.7
-....................             output_high(window_3_led); 
-060E:  BCF    F94.5
-0610:  BSF    F8B.5
+05EC:  MOVLW  28
+05EE:  MOVWF  FF6
+05F0:  MOVLW  04
+05F2:  MOVWF  FF7
+05F4:  CLRF   16
+05F6:  BTFSC  FF2.7
+05F8:  BSF    16.7
+05FA:  BCF    FF2.7
+05FC:  MOVLW  12
+05FE:  MOVWF  22
+0600:  RCALL  014C
+0602:  BTFSC  16.7
+0604:  BSF    FF2.7
+....................             output_high(window_1_led); 
+0606:  BCF    F94.1
+0608:  BSF    F8B.1
 ....................             if(alarm_ext_state==0) 
-0612:  MOVF   1D,F
-0614:  BNZ   0618
+060A:  MOVF   1D,F
+060C:  BNZ   0610
 ....................                alarm_ext_setup(); 
-0616:  RCALL  0440
-....................          }else if(!window_4){ 
-0618:  BRA    0670
-061A:  BSF    F93.4
-061C:  BTFSC  F81.4
-061E:  BRA    0656
-....................             printf("%c%c Alerte, fenêtre 4",254,1); 
-0620:  MOVLW  FE
+060E:  RCALL  0484
+....................          }else if(!window_2){ 
+0610:  BRA    06E0
+0612:  BSF    F93.2
+0614:  BTFSC  F81.2
+0616:  BRA    064E
+....................             printf("%c%c Alerte, fenêtre 2",254,1); 
+0618:  MOVLW  FE
+061A:  BTFSS  F9E.4
+061C:  BRA    061A
+061E:  MOVWF  FAD
+0620:  MOVLW  01
 0622:  BTFSS  F9E.4
 0624:  BRA    0622
 0626:  MOVWF  FAD
-0628:  MOVLW  01
-062A:  BTFSS  F9E.4
-062C:  BRA    062A
-062E:  MOVWF  FAD
-0630:  MOVLW  2C
-0632:  MOVWF  FF6
-0634:  MOVLW  04
-0636:  MOVWF  FF7
-0638:  CLRF   16
-063A:  BTFSC  FF2.7
-063C:  BSF    16.7
-063E:  BCF    FF2.7
-0640:  MOVLW  12
-0642:  MOVWF  21
-0644:  RCALL  014C
-0646:  BTFSC  16.7
-0648:  BSF    FF2.7
-....................             output_high(window_4_led); 
-064A:  BCF    F94.4
-064C:  BSF    F8B.4
+0628:  MOVLW  40
+062A:  MOVWF  FF6
+062C:  MOVLW  04
+062E:  MOVWF  FF7
+0630:  CLRF   16
+0632:  BTFSC  FF2.7
+0634:  BSF    16.7
+0636:  BCF    FF2.7
+0638:  MOVLW  12
+063A:  MOVWF  22
+063C:  RCALL  014C
+063E:  BTFSC  16.7
+0640:  BSF    FF2.7
+....................             output_high(window_2_led); 
+0642:  BCF    F94.2
+0644:  BSF    F8B.2
 ....................             if(alarm_ext_state==0) 
-064E:  MOVF   1D,F
-0650:  BNZ   0654
+0646:  MOVF   1D,F
+0648:  BNZ   064C
 ....................                alarm_ext_setup(); 
-0652:  RCALL  0440
+064A:  RCALL  0484
+....................          }else if(!window_3){ 
+064C:  BRA    06E0
+064E:  BSF    F93.3
+0650:  BTFSC  F81.3
+0652:  BRA    068A
+....................             printf("%c%c Alerte, fenêtre 3",254,1); 
+0654:  MOVLW  FE
+0656:  BTFSS  F9E.4
+0658:  BRA    0656
+065A:  MOVWF  FAD
+065C:  MOVLW  01
+065E:  BTFSS  F9E.4
+0660:  BRA    065E
+0662:  MOVWF  FAD
+0664:  MOVLW  58
+0666:  MOVWF  FF6
+0668:  MOVLW  04
+066A:  MOVWF  FF7
+066C:  CLRF   16
+066E:  BTFSC  FF2.7
+0670:  BSF    16.7
+0672:  BCF    FF2.7
+0674:  MOVLW  12
+0676:  MOVWF  22
+0678:  RCALL  014C
+067A:  BTFSC  16.7
+067C:  BSF    FF2.7
+....................             output_high(window_3_led); 
+067E:  BCF    F94.5
+0680:  BSF    F8B.5
+....................             if(alarm_ext_state==0) 
+0682:  MOVF   1D,F
+0684:  BNZ   0688
+....................                alarm_ext_setup(); 
+0686:  RCALL  0484
+....................          }else if(!window_4){ 
+0688:  BRA    06E0
+068A:  BSF    F93.4
+068C:  BTFSC  F81.4
+068E:  BRA    06C6
+....................             printf("%c%c Alerte, fenêtre 4",254,1); 
+0690:  MOVLW  FE
+0692:  BTFSS  F9E.4
+0694:  BRA    0692
+0696:  MOVWF  FAD
+0698:  MOVLW  01
+069A:  BTFSS  F9E.4
+069C:  BRA    069A
+069E:  MOVWF  FAD
+06A0:  MOVLW  70
+06A2:  MOVWF  FF6
+06A4:  MOVLW  04
+06A6:  MOVWF  FF7
+06A8:  CLRF   16
+06AA:  BTFSC  FF2.7
+06AC:  BSF    16.7
+06AE:  BCF    FF2.7
+06B0:  MOVLW  12
+06B2:  MOVWF  22
+06B4:  RCALL  014C
+06B6:  BTFSC  16.7
+06B8:  BSF    FF2.7
+....................             output_high(window_4_led); 
+06BA:  BCF    F94.4
+06BC:  BSF    F8B.4
+....................             if(alarm_ext_state==0) 
+06BE:  MOVF   1D,F
+06C0:  BNZ   06C4
+....................                alarm_ext_setup(); 
+06C2:  RCALL  0484
 ....................          }else if((!door_1|| !door_2)&&door_delay==-1){ 
-0654:  BRA    0670
-0656:  BSF    F93.5
-0658:  BTFSS  F81.5
-065A:  BRA    0662
-065C:  BSF    F93.6
-065E:  BTFSC  F81.6
-0660:  BRA    0670
-0662:  MOVF   1B,W
-0664:  SUBLW  FF
-0666:  BNZ   0670
+06C4:  BRA    06E0
+06C6:  BSF    F93.5
+06C8:  BTFSS  F81.5
+06CA:  BRA    06D2
+06CC:  BSF    F93.6
+06CE:  BTFSC  F81.6
+06D0:  BRA    06E0
+06D2:  MOVF   1B,W
+06D4:  SUBLW  FF
+06D6:  BNZ   06E0
 ....................             output_high(buzzer); 
-0668:  BCF    F92.0
-066A:  BSF    F89.0
+06D8:  BCF    F92.0
+06DA:  BSF    F89.0
 ....................             door_delay=5;//DELAY_IN 
-066C:  MOVLW  05
-066E:  MOVWF  1B
+06DC:  MOVLW  05
+06DE:  MOVWF  1B
 ....................          } 
 ....................       } 
 ....................    } 
-0670:  BRA    04C6
+06E0:  BRA    0536
 .................... } 
-0672:  SLEEP 
+06E2:  SLEEP 
 
 Configuration Fuses:
    Word  1: 2200   HS NOOSCSEN
