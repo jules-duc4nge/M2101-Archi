@@ -40,8 +40,7 @@ void open(){
       output_low(motor_clockwise);
    }
    output_high(motor_clockwise);
-   //open_timer=OPENING_TIME;
-   open_timer=5;
+   open_timer=OPENING_TIME;
 }
 
 void close(){

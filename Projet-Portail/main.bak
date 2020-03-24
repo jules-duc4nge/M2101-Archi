@@ -36,10 +36,8 @@ void  TIMER1_isr(void)
 }
 
 void open(){
-   printf("On passe cici\n\r");
    while(is_open){
       output_low(motor_clockwise);
-      printf("hello\n\r");
    }
    output_high(motor_clockwise);
    //open_timer=OPENING_TIME;
@@ -47,7 +45,7 @@ void open(){
 }
 
 void close(){
-   while(!is_close && !infrared){
+   while(is_close && !infrared){
       output_low(motor_counter_clockwise);
    }
    output_high(motor_counter_clockwise);

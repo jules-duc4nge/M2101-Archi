@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 4.104, 5967               24-mars-20 11:50
+CCS PCH C Compiler, Version 4.104, 5967               24-Mar-20 14:00
 
                Filename: C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Portail\main.lst
 
@@ -164,10 +164,8 @@ CCS PCH C Compiler, Version 4.104, 5967               24-mars-20 11:50
 ....................    output_high(motor_clockwise); 
 01E2:  BCF    F95.0
 01E4:  BSF    F8C.0
-....................    //open_timer=OPENING_TIME; 
-....................    open_timer=5; 
-01E6:  MOVLW  05
-01E8:  MOVWF  19
+....................    open_timer=OPENING_TIME; 
+01E6:  MOVFF  16,19
 .................... } 
 01EA:  RETLW  00
 ....................  

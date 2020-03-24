@@ -12,32 +12,32 @@ Stack used: 5 worst case (out of 31 total available)
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   83    42 100  main.c
+   82    42 100  main.c
    27     0   0  main.h
   354     0   0  F:\PICC\Devices\18F452.h
 ----- -----
-  464    42 Total
+  463    42 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0     70   5   0   166  4.1  TIMER1_isr
-0     40   3   3    94  2.8  @DIV88
-0    210  16   6   496  5.5  @PRINTF_D_9600_31766_31767
+0     40   3   3             @DIV88
+0    210  16   6             @PRINTF_D_9600_31766_31767
 0     22   2   0    78  2.0  open
 0     38   3   0   160  3.9  close
 0    142  11   0   521  5.7  MAIN
 
 Program metrics:
-    Functions               6
+    Functions               4
     Statements              42
-    Comments                91
-    Volume (V)              2198
-    Difficilty (D)          24.6
-    Effort to implement (E) 54092
-    Time to implement (T)   50 minutes
+    Comments                90
+    Volume (V)              1252
+    Difficilty (D)          15.7
+    Effort to implement (E) 19625
+    Time to implement (T)   18 minutes
     Est Delivered Bugs (B)  0
-    Cyclomatic Complexity   7
-    Maintainability (MI)    96
+    Cyclomatic Complexity   5
+    Maintainability (MI)    146
 
  Segment     Used  Free
 -----------  ----  ----
