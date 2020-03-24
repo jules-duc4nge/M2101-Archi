@@ -1,11 +1,10 @@
 ÀÄmain
-   ÃÄMAIN  0/156  Ram=0
+   ÃÄMAIN  0/142  Ram=0
    ³  ÃÄ??0??
-   ³  ÃÄ@PSTRINGC_9600_31766_31767  0/34  Ram=2
-   ³  ÃÄopen  0/24  Ram=0
-   ³  ÃÄ@PSTRINGC_9600_31766_31767  0/34  Ram=2
-   ³  ÀÄclose  0/24  Ram=0
-   ÀÄTIMER1_isr  0/62  Ram=0
+   ³  ÃÄopen  0/22  Ram=0
+   ³  ÀÄclose  0/38  Ram=0
+   ³     ÀÄopen  0/22  Ram=0
+   ÀÄTIMER1_isr  0/70  Ram=0
       ÀÄ@PRINTF_D_9600_31766_31767  0/210  Ram=6
          ÃÄ@DIV88  0/40  Ram=3
          ÀÄ@DIV88  0/40  Ram=3

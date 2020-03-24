@@ -9,9 +9,10 @@
 #define motor_counter_clockwise pin_d1
 
 // Capteurs
-#define is_open input(pin_b6)
+#define is_open  input(pin_b6)
 #define is_close input(pin_b7)
 #define infrared input(pin_b3)
+#define car_detected input(pin_b2)
 
 //Constante
 unsigned int8 OPENING_TIME = 20;
@@ -29,14 +30,16 @@ void  TIMER1_isr(void)
       tenth=0;
       if(open_timer>0){
          open_timer--;
-         printf("%d \n",open_timer);
+         printf("%d \r\n",open_timer);
       }
    }
 }
 
 void open(){
-   while(!(is_open)){
+   printf("On passe cici\n\r");
+   while(is_open){
       output_low(motor_clockwise);
+      printf("hello\n\r");
    }
    output_high(motor_clockwise);
    //open_timer=OPENING_TIME;
@@ -44,11 +47,14 @@ void open(){
 }
 
 void close(){
-   while(!(is_close)){
+   while(!is_close && !infrared){
       output_low(motor_counter_clockwise);
    }
    output_high(motor_counter_clockwise);
    open_timer=-1;
+   if(infrared){
+      open();
+   }
 }
 
 void main()
@@ -66,8 +72,8 @@ void main()
 //Setup_Oscillator parameter not selected from Intr Oscillator Config tab
 
    while(true){
-      if((rfid_in ||rfid_out)&&!(rfid_state)){
-         rfid_state=1; printf("RFID detected !\n");
+      if((rfid_in||rfid_out||car_detected)&&!(rfid_state)){
+         rfid_state=1;
          open();
       }
       if(open_timer==0){

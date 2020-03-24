@@ -1,53 +1,50 @@
 
-ROM used: 724 (2%)
-          724 (2%) including unused fragments
+ROM used: 668 (2%)
+          668 (2%) including unused fragments
 
-          2 Average locations per line
-          18 Average locations per statement
+          1 Average locations per line
+          16 Average locations per statement
 
 RAM used: 26 (2%) at main() level
-          37 (2%) worst case
+          35 (2%) worst case
 
-Stack used: 4 worst case (out of 31 total available)
+Stack used: 5 worst case (out of 31 total available)
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   79    41 100  main.c
+   83    42 100  main.c
    27     0   0  main.h
   354     0   0  F:\PICC\Devices\18F452.h
 ----- -----
-  460    41 Total
+  464    42 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
-0     62   4   0   166  4.1  TIMER1_isr
+0     70   5   0   166  4.1  TIMER1_isr
 0     40   3   3    94  2.8  @DIV88
-0    210  15   6   496  5.5  @PRINTF_D_9600_31766_31767
-0     24   2   0    88  2.4  open
-0     24   2   0    94  2.8  close
-0    156  11   0   552  5.6  MAIN
-0     18   1   0    94  2.8  @const84
-0     34   2   2   524  5.6  @PSTRINGC_9600_31766_31767
-0     10   1   0             @const86
+0    210  16   6   496  5.5  @PRINTF_D_9600_31766_31767
+0     22   2   0    78  2.0  open
+0     38   3   0   160  3.9  close
+0    142  11   0   521  5.7  MAIN
 
 Program metrics:
-    Functions               8
-    Statements              41
+    Functions               6
+    Statements              42
     Comments                91
-    Volume (V)              3194
-    Difficilty (D)          32.3
-    Effort to implement (E) 103283
-    Time to implement (T)   1 hours, 36 minutes
-    Est Delivered Bugs (B)  1
-    Cyclomatic Complexity   8
-    Maintainability (MI)    70
+    Volume (V)              2198
+    Difficilty (D)          24.6
+    Effort to implement (E) 54092
+    Time to implement (T)   50 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   7
+    Maintainability (MI)    96
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-00006     0  4  
 00008-00094   142  0  
-00096-07FFE   578  32040  
+00096-07FFE   522  32096  
 
 
 
