@@ -67,7 +67,7 @@ void main()
 
    while(true){
       if((rfid_in ||rfid_out)&&!(rfid_state)){
-         rfid_state=1;
+         rfid_state=1; printf("RFID detected !\n");
          open();
       }
       if(open_timer==0){

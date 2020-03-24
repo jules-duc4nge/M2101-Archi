@@ -1,0 +1,301 @@
+CCS PCH C Compiler, Version 4.104, 5967               24-mars-20 10:19
+
+               Filename: C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Portail\main.lst
+
+               ROM used: 724 bytes (2%)
+                         Largest free fragment is 32040
+               RAM used: 26 (2%) at main() level
+                         37 (2%) worst case
+               Stack:    4 worst case (1 in main + 3 for interrupts)
+
+*
+0000:  GOTO   023C
+*
+0008:  MOVWF  04
+000A:  MOVFF  FD8,05
+000E:  MOVFF  FE0,06
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0C
+0018:  MOVFF  FEA,07
+001C:  MOVFF  FE1,08
+0020:  MOVFF  FE2,09
+0024:  MOVFF  FD9,0A
+0028:  MOVFF  FDA,0B
+002C:  MOVFF  FF3,12
+0030:  MOVFF  FF4,13
+0034:  MOVFF  FFA,14
+0038:  MOVFF  00,0E
+003C:  MOVFF  01,0F
+0040:  MOVFF  02,10
+0044:  MOVFF  03,11
+0048:  BTFSS  F9D.0
+004A:  GOTO   0054
+004E:  BTFSC  F9E.0
+0050:  GOTO   0190
+0054:  MOVFF  0E,00
+0058:  MOVFF  0F,01
+005C:  MOVFF  10,02
+0060:  MOVFF  11,03
+0064:  MOVFF  0C,FE9
+0068:  MOVFF  07,FEA
+006C:  BSF    07.7
+006E:  MOVFF  08,FE1
+0072:  MOVFF  09,FE2
+0076:  MOVFF  0A,FD9
+007A:  MOVFF  0B,FDA
+007E:  MOVFF  12,FF3
+0082:  MOVFF  13,FF4
+0086:  MOVFF  14,FFA
+008A:  MOVF   04,W
+008C:  MOVFF  06,FE0
+0090:  MOVFF  05,FD8
+0094:  RETFIE 0
+.................... #include "C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Portail\main.h" 
+.................... #include <F:\PICC\Devices\18F452.h> 
+.................... //////// Standard Header file for the PIC18F452 device //////////////// 
+.................... #device PIC18F452 
+.................... #list 
+....................  
+.................... #device adc=8 
+....................  
+.................... #FUSES NOWDT                    //No Watch Dog Timer 
+.................... #FUSES WDT128                   //Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES HS                       //High speed Osc (> 4mhz for PCM/PCH) (>10mhz for PCD) 
+.................... #FUSES NOPROTECT                //Code not protected from reading 
+.................... #FUSES NOOSCSEN                 //Oscillator switching is disabled, main oscillator is source 
+.................... #FUSES NOBROWNOUT               //No brownout reset 
+.................... #FUSES BORV20                   //Brownout reset at 2.0V 
+.................... #FUSES NOPUT                    //No Power Up Timer 
+.................... #FUSES STVREN                   //Stack full/underflow will cause reset 
+.................... #FUSES NODEBUG                  //No Debug mode for ICD 
+.................... #FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOWRT                    //Program memory not write protected 
+.................... #FUSES NOWRTD                   //Data EEPROM not write protected 
+.................... #FUSES NOWRTB                   //Boot block not write protected 
+.................... #FUSES NOWRTC                   //configuration not registers write protected 
+.................... #FUSES NOCPD                    //No EE protection 
+.................... #FUSES NOCPB                    //No Boot Block code protection 
+.................... #FUSES NOEBTR                   //Memory not protected from table reads 
+.................... #FUSES NOEBTRB                  //Boot block not protected from table reads 
+....................  
+.................... #use delay(clock=20000000) 
+.................... #use rs232(baud=9600,parity=N,xmit=PIN_C6,rcv=PIN_C7,bits=8) 
+....................  
+....................  
+....................  
+.................... // RFID 
+.................... #define rfid_in input(pin_b0) 
+.................... #define rfid_out input(pin_b1) 
+....................  
+.................... // Moteur 
+.................... #define motor_clockwise pin_d0 
+.................... #define motor_counter_clockwise pin_d1 
+....................  
+.................... // Door 
+.................... #define is_open input(pin_b6) 
+.................... #define is_close input(pin_b7) 
+....................  
+.................... //Constante 
+.................... unsigned int8 OPENING_TIME = 20; 
+....................  
+.................... // Variables 
+.................... char rfid_state=0; 
+.................... signed int8 tenth=0, open_timer=-1; 
+....................  
+.................... #int_TIMER1 
+.................... void  TIMER1_isr(void)  
+.................... { 
+....................    set_timer1(3036);// Tout les dixèmes 
+*
+0190:  MOVLW  0B
+0192:  MOVWF  FCF
+0194:  MOVLW  DC
+0196:  MOVWF  FCE
+....................    tenth++; 
+0198:  INCF   18,F
+....................    if(tenth==10){// Toute les secondes 
+019A:  MOVF   18,W
+019C:  SUBLW  0A
+019E:  BNZ   01C8
+....................       tenth=0; 
+01A0:  CLRF   18
+....................       if(open_timer>0){ 
+01A2:  BTFSC  19.7
+01A4:  BRA    01C8
+01A6:  MOVF   19,W
+01A8:  SUBLW  00
+01AA:  BC    01C8
+....................          open_timer--; 
+01AC:  DECF   19,F
+....................          printf("%d \n",open_timer); 
+01AE:  MOVFF  19,1C
+01B2:  MOVLW  1F
+01B4:  MOVWF  1D
+01B6:  BRA    00BE
+01B8:  MOVLW  20
+01BA:  BTFSS  F9E.4
+01BC:  BRA    01BA
+01BE:  MOVWF  FAD
+01C0:  MOVLW  0A
+01C2:  BTFSS  F9E.4
+01C4:  BRA    01C2
+01C6:  MOVWF  FAD
+....................       } 
+....................    } 
+.................... } 
+....................  
+01C8:  BCF    F9E.0
+01CA:  GOTO   0054
+.................... void open(){ 
+....................    while(!(is_open)){ 
+*
+020C:  BSF    F93.6
+020E:  BTFSC  F81.6
+0210:  BRA    0218
+....................       output_low(motor_clockwise); 
+0212:  BCF    F95.0
+0214:  BCF    F8C.0
+....................    } 
+0216:  BRA    020C
+....................    output_high(motor_clockwise); 
+0218:  BCF    F95.0
+021A:  BSF    F8C.0
+....................    //open_timer=OPENING_TIME; 
+....................    open_timer=5; 
+021C:  MOVLW  05
+021E:  MOVWF  19
+.................... } 
+0220:  GOTO   02C2 (RETURN)
+....................  
+.................... void close(){ 
+....................    while(!(is_close)){ 
+0224:  BSF    F93.7
+0226:  BTFSC  F81.7
+0228:  BRA    0230
+....................       output_low(motor_counter_clockwise); 
+022A:  BCF    F95.1
+022C:  BCF    F8C.1
+....................    } 
+022E:  BRA    0224
+....................    output_high(motor_counter_clockwise); 
+0230:  BCF    F95.1
+0232:  BSF    F8C.1
+....................    open_timer=-1; 
+0234:  MOVLW  FF
+0236:  MOVWF  19
+.................... } 
+0238:  GOTO   02D2 (RETURN)
+....................  
+.................... void main() 
+.................... { 
+023C:  CLRF   FF8
+023E:  BCF    FD0.7
+0240:  BSF    07.7
+0242:  CLRF   FEA
+0244:  CLRF   FE9
+0246:  MOVLW  81
+0248:  MOVWF  FAF
+024A:  MOVLW  A6
+024C:  MOVWF  FAC
+024E:  MOVLW  90
+0250:  MOVWF  FAB
+0252:  MOVLW  14
+0254:  MOVWF  16
+0256:  CLRF   17
+0258:  CLRF   18
+025A:  MOVLW  FF
+025C:  MOVWF  19
+025E:  BSF    FC1.0
+0260:  BSF    FC1.1
+0262:  BSF    FC1.2
+0264:  BCF    FC1.3
+....................    setup_adc_ports(NO_ANALOGS); 
+0266:  BSF    FC1.0
+0268:  BSF    FC1.1
+026A:  BSF    FC1.2
+026C:  BCF    FC1.3
+....................    setup_adc(ADC_CLOCK_DIV_2); 
+026E:  BCF    FC1.6
+0270:  BCF    FC2.6
+0272:  BCF    FC2.7
+0274:  BCF    FC1.7
+0276:  BSF    FC2.0
+....................    setup_psp(PSP_DISABLED); 
+0278:  BCF    F96.4
+....................    setup_spi(SPI_SS_DISABLED); 
+027A:  BCF    FC6.5
+027C:  BCF    F94.5
+027E:  BSF    F94.4
+0280:  BCF    F94.3
+0282:  MOVLW  01
+0284:  MOVWF  FC6
+0286:  MOVLW  00
+0288:  MOVWF  FC7
+....................    setup_wdt(WDT_OFF); 
+028A:  BCF    FD1.0
+....................    setup_timer_0(RTCC_INTERNAL); 
+028C:  MOVLW  80
+028E:  MOVWF  FD5
+....................    setup_timer_1(T1_INTERNAL|T1_DIV_BY_8); 
+0290:  MOVLW  B5
+0292:  MOVWF  FCD
+....................    setup_timer_2(T2_DISABLED,0,1); 
+0294:  MOVLW  00
+0296:  MOVWF  FCA
+0298:  MOVLW  00
+029A:  MOVWF  FCB
+....................    enable_interrupts(INT_TIMER1); 
+029C:  BSF    F9D.0
+....................    enable_interrupts(GLOBAL); 
+029E:  MOVLW  C0
+02A0:  IORWF  FF2,F
+.................... //Setup_Oscillator parameter not selected from Intr Oscillator Config tab 
+....................  
+....................    while(true){ 
+....................       if((rfid_in ||rfid_out)&&!(rfid_state)){ 
+02A2:  BSF    F93.0
+02A4:  BTFSC  F81.0
+02A6:  BRA    02AE
+02A8:  BSF    F93.1
+02AA:  BTFSS  F81.1
+02AC:  BRA    02C2
+02AE:  MOVF   17,F
+02B0:  BNZ   02C2
+....................          rfid_state=1; printf("RFID detected !\n"); 
+02B2:  MOVLW  01
+02B4:  MOVWF  17
+02B6:  MOVLW  CE
+02B8:  MOVWF  FF6
+02BA:  MOVLW  01
+02BC:  MOVWF  FF7
+02BE:  RCALL  01EA
+....................          open(); 
+02C0:  BRA    020C
+....................       } 
+....................       if(open_timer==0){ 
+02C2:  MOVF   19,F
+02C4:  BNZ   02D4
+....................          printf("closing!"); 
+02C6:  MOVLW  E0
+02C8:  MOVWF  FF6
+02CA:  MOVLW  01
+02CC:  MOVWF  FF7
+02CE:  RCALL  01EA
+....................          close(); 
+02D0:  BRA    0224
+....................          rfid_state=0; 
+02D2:  CLRF   17
+....................       } 
+....................    } 
+02D4:  BRA    02A2
+.................... } 
+02D6:  SLEEP 
+
+Configuration Fuses:
+   Word  1: 2200   HS NOOSCSEN
+   Word  2: 0E0D   NOBROWNOUT WDT128 NOWDT BORV20 NOPUT
+   Word  3: 0100   CCP2C1
+   Word  4: 0081   STVREN NODEBUG NOLVP
+   Word  5: C00F   NOPROTECT NOCPD NOCPB
+   Word  6: E00F   NOWRT NOWRTD NOWRTB NOWRTC
+   Word  7: 400F   NOEBTR NOEBTRB

@@ -3,7 +3,8 @@ Target=C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Portail\main.hex
 Development_Mode=
 Processor_Text=PIC18F452
 ToolSuite=CCS
-[C:\Users\Jules\Documents\DUT\Archi\Portail\main]
+Processor=0x452F
+[C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Portail\main]
 Type=4
 Path=
 FileList=
@@ -18,10 +19,7 @@ AdditionalOptionString=
 Link=0
 Count=1
 1=C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Portail\main
-[C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Portail\main]
-Type=4
-Path=
-FileList=
-BuildTool=
-OptionString=
-AdditionalOptionString=
+[Opened Files]
+1=main.c
+2=main.h
+3=
