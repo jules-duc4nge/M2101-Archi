@@ -1,0 +1,27 @@
+[PROJECT]
+Target=C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Portail\main.hex
+Development_Mode=
+Processor_Text=PIC18F452
+ToolSuite=CCS
+[C:\Users\Jules\Documents\DUT\Archi\Portail\main]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Portail\main.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Units]
+Link=0
+Count=1
+1=C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Portail\main
+[C:\Users\Jules\Documents\Archi\M2101-Archi\Projet-Portail\main]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
